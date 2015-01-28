@@ -1,0 +1,17 @@
+Create a file called writeup.txt to record your answers to the following questions:
+
+In your own words: what is a database?
+
+An architectualized collection of data that makes it easy to organize and access that data.
+
+List some problems with using files instead of a database:
+
+Not broadly accessible if not connected to a server, cannot update as easily, cannot handle large sets of data.
+
+What is a schema (google may confuse you here)?
+
+A schema is the structure of a given database. It's something of a blueprint that standardizes the way the data is collected, grouped, and accessed.
+
+When you are not specifically adding/deleting or querying your database, is it still running?
+
+Yee...es?

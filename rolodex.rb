@@ -5,11 +5,11 @@ require 'pry'
 db = SQLite3::Database.new "rolodex.db"
 
 # if this is the first time running the code this table will be created, otherwise this step will be skipped
-rows = db.execute <<-SQL
+rows = db.execute <<-SQL #execute is going to take SQL commands. like a tag.
 create table if not exists friends (
   id INTEGER PRIMARY KEY,
   name TEXT,
-  phone INTEGERS
+  phone INTEGER
   );
   SQL
 
@@ -25,50 +25,46 @@ create table if not exists friends (
   # the actual code to insert the new entry
   db.execute("INSERT INTO friends (name, phone) VALUES (?, ?)", name, phone)
   # since the entry automatically happens at the end of the table, we can now select the last entry and display it so the user can see that their entry worked.
-  person = db.execute("SELECT name, phone FROM friends WHERE ID = (SELECT MAX(ID) FROM friends)");
-  puts "#{person[0][0]}'s number is #{person[0][1]}."
+  person = db.execute(SELECT (name, phone) FROM friends WHERE id = new.id) && a select command that takes just the name and phone info from the last entry of friends &&)
+  && display the person's name and number in the following format: "so-and-so's number is xxxxxxxxx" &&
   end
   # look everyone up
   if response == 'r'
   # grab only the name and phone number of everyone and display them
-  all = db.execute("SELECT name, phone FROM friends")
+  all = db.execute(&& a select command that takes just the name and phone info from all entries &&)
   all.each do |entry|
-    puts "#{entry[0]}'s number is #{entry[1]}."
+  && display all entries with the following format: "so-and-so's phone number is xxxxxxx" &&
   end
   end
   # update an entry
-
   if response == 'u'
-  #  get a list of everyone so we can select the correct person by id
-    all = db.execute("SELECT id, name, phone FROM friends")
+  # get a list of everyone so we can select the correct person by id
+  all = db.execute(&& A select command that gets the id, name, and phone number from all entries &&)
   # loop through the names and print them to the terminal
-    all.each do |entry|
-    puts "#{entry[1]}'s number is #{entry[2]}. To select so-and-so, enter #{entry[0]}." #(this should be their primary key)" &&
+  all.each do |entry|
+  && display each entry int he following format:"so-and-so's number is xxxxxx. To select so-and-so, enter THE ID OF SO-AND-SO(this should be their primary key)" &&
   end
-
-  # #grab an id and new phone number from the user
+  # grab an id and new phone number from the user
   puts "which id will you update?"
   id = gets.chomp.downcase
   puts "what is their new number?"
   number = gets.chomp
   # update the entry
-  db.execute("UPDATE friends SET phone=? WHERE id=?", number, id)
-  # #get the updated entry so the user can see that the change happened
-  person = db.execute("SELECT name, phone FROM friends WHERE id=?", id)
-  puts "#{person[0][0]}'s number is now #{person[0][1]}."
+  db.execute(&& use an update command to change the phone number of the id given by the user &&)
+  # get the updated entry so the user can see that the change happened
+  person = db.execute(&& use a select command to get the name and new phone number from the given id &&)
+  && display the person's name and number in the following format: "so-and-so's number is now xxxxxx" &&
   end
-
+  # delete an entry
   if response == 'd'
-  #  get a list of everyone so we can select the correct person by id
-    all = db.execute("SELECT id, name, phone FROM friends")
-  # loop through the names and print them to the terminal
-    all.each do |entry|
-    puts "#{entry[1]}'s number is #{entry[2]}. To select so-and-so, enter #{entry[0]}." #(this should be their primary key)" &&
+  # get a list of everyone so we can select the correct person by id
+  all = db.execute(&& use a select command to get all entries' id, name, and phone number &&)
+  all.each do |entry|
+  && display each entry int he following format:"so-and-so's number is xxxxxx. To select so-and-so, enter THE ID OF SO-AND-SO(this should be their primary key)" &&
   end
-
   puts "which id will you delete?"
   id = gets.chomp.downcase
   # delete the entry
-  db.execute("DELETE FROM friends WHERE id=?", id)
-  puts "Buuuuurn."
+  db.execute(&& use a delete command to remove the entry with the id supplied by the user &&)
+  puts "buuuuurn"
   end

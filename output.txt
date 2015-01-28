@@ -1,0 +1,27 @@
+1|Friends Academy|Locust Valley|NY|11560
+2|Brown University|Providence|RI|2912
+3|New York University|New York|NY|10003
+
+0|id|INTEGER|0||1
+1|name|TEXT|0||0
+2|city|TEXT|0||0
+3|state|TEXT|0||0
+4|zip|INTEGER|0||0
+
+1|Manhattan High|Locust Valley|NY|11560
+2|Manhattan High|Providence|RI|2912
+3|Manhattan High|New York|NY|10003
+
+1|Adam|Adam@MH.com|Math|40
+2|James|James@MH.com|English|28
+3|Ricki|Ricki@MH.com|English|23
+4|Katrina|Katrina@MH.com|English|25
+5|Rachel|Rachel@MH.com|Math|29
+6|Gabe|Gabe@MH.com|History|24
+7|Shosh|Shosh@MH.com|French|24
+
+CREATE TABLE teachers (id INTEGER PRIMARY KEY, name TEXT, email TEXT, subject TEXT, age INTEGER);
+
+UPDATE teachers SET age = 40 WHERE subject = 'Math';
+
+DELETE FROM teachers WHERE subject = 'Math';
